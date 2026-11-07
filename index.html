@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vitrine OfertAí | @ofertai.promo</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #FFF8F0;
+      color: #0B1345;
+    }
+    .hero-dots {
+      background-color: #0B1345;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1.5px, transparent 1.5px);
+      background-size: 18px 18px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased">
+
+  <!-- 1. HERO HEADER -->
+  <header class="hero-dots text-white pt-10 pb-9 px-5 text-center border-b-4 border-[#FFC700]">
+    <div class="max-w-md mx-auto flex flex-col items-center">
+      <!-- Logo OfertAí -->
+      <div class="inline-flex items-center px-4 py-1.5 rounded-2xl bg-[#EE3B24] shadow-md mb-2">
+        <span class="text-2xl sm:text-3xl font-black tracking-tight text-white">
+          Ofert<span class="text-[#FFC700]">Aí</span>
+        </span>
+      </div>
+
+      <span class="text-xs font-extrabold tracking-widest uppercase text-[#FFC700] mb-3">
+        @OFERTAI.PROMO
+      </span>
+
+      <h1 class="text-2xl sm:text-3xl font-black leading-tight text-white mb-4">
+        Radar de preços. Economia de verdade.
+      </h1>
+
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 text-xs font-semibold text-slate-100">
+        <span>🔒 Só lojas oficiais e vendedores bem avaliados</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="max-w-md mx-auto w-full px-4 py-6 space-y-6">
+
+    <!-- 2. COUNTDOWN BANNER 11.11 -->
+    <section class="bg-[#EE3B24] text-white rounded-2xl p-4 shadow-md flex items-center gap-4">
+      <div class="bg-black/20 rounded-xl px-3.5 py-2 text-center shrink-0">
+        <span id="days-left" class="block text-2xl font-black leading-none text-[#FFC700]">4</span>
+        <span class="text-[11px] font-extrabold uppercase tracking-wider text-white">dias pro 11.11</span>
+      </div>
+      <p class="text-xs sm:text-sm font-semibold leading-snug text-white">
+        Manda no direct o que você quer comprar que a gente fica de olho no preço.
+      </p>
+    </section>
+
+    <!-- 3. RAIO-X DE PREÇO (Direct Message Only) -->
+    <section class="bg-[#0B1345] text-white rounded-3xl p-6 shadow-xl space-y-4">
+      <div>
+        <span class="text-xs font-extrabold uppercase tracking-widest text-[#FFC700] block mb-1">
+          RAIO-X DE PREÇO
+        </span>
+        <h2 class="text-xl sm:text-2xl font-black leading-tight text-white">
+          Quer comprar algo? <span class="text-[#FFC700]">A gente pesquisa pra você.</span>
+        </h2>
+      </div>
+
+      <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+        Escreva o nome ou cole o link do produto que você quer comprar. A gente compara nas lojas e te responde no direct.
+      </p>
+
+      <div class="space-y-2">
+        <label for="produto-input" class="block text-xs font-bold text-slate-200">
+          Produto ou link
+        </label>
+        <textarea
+          id="produto-input"
+          rows="3"
+          placeholder="Ex.: air fryer 5 litros até R$ 400"
+          class="w-full rounded-xl bg-white text-[#0B1345] placeholder-slate-400 p-3.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#FFC700]"
+        ></textarea>
+      </div>
+
+      <button
+        id="pedir-comparacao-btn"
+        type="button"
+        class="w-full py-3.5 px-5 rounded-xl bg-[#FFC700] hover:bg-[#ffcf26] active:scale-[0.99] text-[#0B1345] font-black text-sm sm:text-base shadow-md transition flex items-center justify-center gap-2"
+      >
+        <span>Pedir comparação no direct →</span>
+      </button>
+
+      <p id="feedback-msg" class="text-xs font-bold text-center hidden pt-1"></p>
+    </section>
+
+    <!-- 4. ENTRAR PELA OFERTAÍ (Escolha a loja) -->
+    <section class="space-y-3">
+      <div>
+        <span class="text-xs font-extrabold uppercase tracking-widest text-[#EE3B24] block">
+          ENTRAR PELA OFERTAÍ
+        </span>
+        <h2 class="text-lg sm:text-xl font-black text-[#0B1345]">
+          Escolha a loja
+        </h2>
+      </div>
+
+      <div class="space-y-3">
+        <!-- Shopee -->
+        <a
+          href="https://s.shopee.com.br/5AtnLAvmDs"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center justify-between p-4 rounded-2xl bg-[#EE4D2D] hover:opacity-95 text-white shadow-md transition"
+        >
+          <div class="flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center text-xl">
+              🛍️
+            </div>
+            <div>
+              <h3 class="font-black text-base leading-tight">Shopee</h3>
+              <p class="text-xs text-white/90 font-medium">Campanha 11.11 e cupons do dia</p>
+            </div>
+          </div>
+          <span class="text-xl font-black">→</span>
+        </a>
+
+        <!-- Amazon -->
+        <a
+          href="https://www.amazon.com.br/deals?tag=ofertai0e-20"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center justify-between p-4 rounded-2xl bg-[#232F3E] hover:opacity-95 text-white shadow-md transition"
+        >
+          <div class="flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center text-xl">
+              📦
+            </div>
+            <div>
+              <h3 class="font-black text-base leading-tight">Amazon</h3>
+              <p class="text-xs text-white/85 font-medium">Ofertas do dia com entrega rápida</p>
+            </div>
+          </div>
+          <span class="text-xl font-black text-[#FFC700]">→</span>
+        </a>
+
+        <!-- Mercado Livre -->
+        <a
+          href="https://www.mercadolivre.com.br/social/ofertaipromo"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center justify-between p-4 rounded-2xl bg-[#FFF159] hover:opacity-95 text-[#0B1345] shadow-md border border-amber-300 transition"
+        >
+          <div class="flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-[#0B1345]/10 flex items-center justify-center text-xl">
+              🛒
+            </div>
+            <div>
+              <h3 class="font-black text-base leading-tight">Mercado Livre</h3>
+              <p class="text-xs text-[#0B1345]/80 font-semibold">Achados selecionados pela OfertAí</p>
+            </div>
+          </div>
+          <span class="text-xl font-black">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 5. COMO FUNCIONA -->
+    <section class="bg-white border border-amber-900/10 rounded-2xl p-5 shadow-sm space-y-2">
+      <span class="text-[11px] font-extrabold uppercase tracking-widest text-[#EE3B24] block">
+        COMO FUNCIONA
+      </span>
+      <h2 class="text-base font-black text-[#0B1345]">
+        Você paga o mesmo preço
+      </h2>
+      <div class="flex items-start gap-3 pt-1">
+        <div class="w-9 h-9 rounded-xl bg-[#FFF8F0] border border-amber-900/15 text-[#EE3B24] font-black flex items-center justify-center shrink-0">
+          %
+        </div>
+        <div>
+          <h3 class="text-sm font-extrabold text-[#0B1345]">Links de afiliado</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mt-0.5">
+            Quando você compra por aqui, a OfertAí ganha uma pequena comissão, sem custo extra pra você. Pagamento, entrega e garantia são da própria loja.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 6. FOOTER -->
+  <footer class="bg-[#0B1345] text-white py-8 px-5 text-center space-y-4">
+    <div class="max-w-md mx-auto space-y-3">
+      <a
+        href="https://www.instagram.com/ofertai.promo/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#FFC700] hover:bg-[#ffcf26] text-[#0B1345] font-black text-sm shadow-md transition"
+      >
+        Seguir @ofertai.promo
+      </a>
+      <p class="text-[11px] text-slate-300 leading-relaxed">
+        Preços e estoque mudam a qualquer momento. Confira o valor final na loja antes de pagar.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    function copiarParaClipboard(texto) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(texto).catch(() => {});
+      } else {
+        const temp = document.createElement("textarea");
+        temp.value = texto;
+        document.body.appendChild(temp);
+        temp.select();
+        try { document.execCommand("copy"); } catch (e) {}
+        document.body.removeChild(temp);
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      // Atualiza contador de dias até 11/11 dinamicamente
+      const hoje = new Date();
+      const alvo = new Date(hoje.getFullYear(), 10, 11); // 11 de Novembro
+      const diffDias = Math.max(0, Math.ceil((alvo - hoje) / (1000 * 60 * 60 * 24)));
+      const daysEl = document.getElementById("days-left");
+      if (daysEl && diffDias > 0 && diffDias <= 30) {
+        daysEl.textContent = String(diffDias);
+      }
+
+      const input = document.getElementById("produto-input");
+      const btn = document.getElementById("pedir-comparacao-btn");
+      const feedback = document.getElementById("feedback-msg");
+
+      btn.addEventListener("click", () => {
+        const valor = input.value.trim();
+        feedback.classList.remove("hidden", "text-[#FFC700]", "text-emerald-400");
+
+        if (!valor) {
+          feedback.textContent = "Escreva o produto ou cole o link primeiro.";
+          feedback.classList.add("text-[#FFC700]");
+          return;
+        }
+
+        const mensagem = `Oi OfertAí! Quero pedir um Raio-X de preço para: ${valor}`;
+        copiarParaClipboard(mensagem);
+
+        feedback.textContent = "Mensagem copiada. Cole no direct da @ofertai.promo.";
+        feedback.classList.add("text-emerald-400");
+
+        setTimeout(() => {
+          window.open("https://www.instagram.com/ofertai.promo/", "_blank", "noopener,noreferrer");
+        }, 700);
+      });
+    });
+  </script>
+</body>
+</html>
