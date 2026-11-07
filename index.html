@@ -51,10 +51,10 @@
   <main class="max-w-md mx-auto w-full px-4 py-6 space-y-6">
 
     <!-- 2. COUNTDOWN BANNER 11.11 -->
-    <section class="bg-[#EE3B24] text-white rounded-2xl p-4 shadow-md flex items-center gap-4">
+    <section id="countdown-banner" class="bg-[#EE3B24] text-white rounded-2xl p-4 shadow-md flex items-center gap-4">
       <div class="bg-black/20 rounded-xl px-3.5 py-2 text-center shrink-0">
         <span id="days-left" class="block text-2xl font-black leading-none text-[#FFC700]">4</span>
-        <span class="text-[11px] font-extrabold uppercase tracking-wider text-white">dias pro 11.11</span>
+        <span id="days-label" class="text-[11px] font-extrabold uppercase tracking-wider text-white">dias pro 11.11</span>
       </div>
       <p class="text-xs sm:text-sm font-semibold leading-snug text-white">
         Manda no direct o que você quer comprar que a gente fica de olho no preço.
@@ -225,13 +225,22 @@
     }
 
     window.addEventListener("DOMContentLoaded", () => {
-      // Atualiza contador de dias até 11/11 dinamicamente
-      const hoje = new Date();
-      const alvo = new Date(hoje.getFullYear(), 10, 11); // 11 de Novembro
-      const diffDias = Math.max(0, Math.ceil((alvo - hoje) / (1000 * 60 * 60 * 24)));
+      // Contagem até 11/11 (horário de Brasília): mostra os dias, vira "HOJE" no dia 11 e some depois
+      const agora = new Date();
+      const inicio1111 = new Date("2026-11-11T00:00:00-03:00");
+      const fim1111 = new Date("2026-11-12T00:00:00-03:00");
+      const banner = document.getElementById("countdown-banner");
       const daysEl = document.getElementById("days-left");
-      if (daysEl && diffDias > 0 && diffDias <= 30) {
+      const labelEl = document.getElementById("days-label");
+      if (agora >= fim1111) {
+        banner.remove();
+      } else if (agora >= inicio1111) {
+        daysEl.textContent = "HOJE";
+        labelEl.textContent = "é dia de 11.11";
+      } else {
+        const diffDias = Math.ceil((inicio1111 - agora) / (1000 * 60 * 60 * 24));
         daysEl.textContent = String(diffDias);
+        labelEl.textContent = diffDias === 1 ? "dia pro 11.11" : "dias pro 11.11";
       }
 
       const input = document.getElementById("produto-input");
@@ -251,12 +260,17 @@
         const mensagem = `Oi OfertAí! Quero pedir um Raio-X de preço para: ${valor}`;
         copiarParaClipboard(mensagem);
 
-        feedback.textContent = "Mensagem copiada. Cole no direct da @ofertai.promo.";
+        feedback.textContent = "Mensagem copiada. Cole na conversa com a @ofertai.promo.";
         feedback.classList.add("text-emerald-400");
 
-        setTimeout(() => {
-          window.open("https://www.instagram.com/ofertai.promo/", "_blank", "noopener,noreferrer");
-        }, 700);
+        // Abre direto a conversa (direct) na hora do toque, sem atraso, para o navegador do Instagram não bloquear
+        const dm = document.createElement("a");
+        dm.href = "https://ig.me/m/ofertai.promo";
+        dm.target = "_blank";
+        dm.rel = "noopener noreferrer";
+        document.body.appendChild(dm);
+        dm.click();
+        dm.remove();
       });
     });
   </script>
