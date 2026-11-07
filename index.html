@@ -93,10 +93,24 @@
         type="button"
         class="w-full py-3.5 px-5 rounded-xl bg-[#FFC700] hover:bg-[#ffcf26] active:scale-[0.99] text-[#0B1345] font-black text-sm sm:text-base shadow-md transition flex items-center justify-center gap-2"
       >
-        <span>Pedir comparação no direct →</span>
+        <span>Pedir meu Raio-X →</span>
       </button>
 
       <p id="feedback-msg" class="text-xs font-bold text-center hidden pt-1"></p>
+
+      <!-- Passo 2: aparece depois do toque. A pessoa envia a mensagem no direct (o Instagram não deixa um site enviar por ela) -->
+      <div id="passo-direct" class="hidden space-y-3 bg-white/10 border border-white/15 rounded-2xl p-4">
+        <p class="text-xs sm:text-sm font-bold text-white">Agora é só mandar essa mensagem no nosso direct:</p>
+        <p id="msg-pronta" class="bg-white text-[#0B1345] rounded-xl p-3 text-sm font-bold select-all break-words"></p>
+        <a
+          id="abrir-direct"
+          href="https://ig.me/m/ofertai.promo"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full py-3.5 px-5 rounded-xl bg-[#EE3B24] text-white font-black text-sm sm:text-base shadow-md flex items-center justify-center gap-2"
+        >Abrir o direct da @ofertai.promo →</a>
+        <p class="text-[11px] text-slate-300 leading-relaxed">Lá, toque em <b class="text-white">Colar</b> e envie. Se não aparecer, escreva <b class="text-[#FFC700]">RAIO-X</b> e o nome do produto. A gente responde por lá.</p>
+      </div>
     </section>
 
     <!-- 4. ENTRAR PELA OFERTAÍ (Escolha a loja) -->
@@ -211,16 +225,22 @@
   </footer>
 
   <script>
+    // Copia o texto. Primeiro pelo método antigo (funciona no navegador do Instagram), depois pela API nova.
     function copiarParaClipboard(texto) {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
+      let ok = false;
+      const temp = document.createElement("textarea");
+      temp.value = texto;
+      temp.setAttribute("readonly", "");
+      temp.style.position = "fixed";
+      temp.style.opacity = "0";
+      document.body.appendChild(temp);
+      temp.focus();
+      temp.select();
+      temp.setSelectionRange(0, texto.length);
+      try { ok = document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(temp);
+      if (!ok && navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(texto).catch(() => {});
-      } else {
-        const temp = document.createElement("textarea");
-        temp.value = texto;
-        document.body.appendChild(temp);
-        temp.select();
-        try { document.execCommand("copy"); } catch (e) {}
-        document.body.removeChild(temp);
       }
     }
 
@@ -257,20 +277,22 @@
           return;
         }
 
-        const mensagem = `Oi OfertAí! Quero pedir um Raio-X de preço para: ${valor}`;
+        // Mensagem curta, começando com RAIO-X (palavra-chave da resposta automática no direct)
+        const mensagem = `RAIO-X: ${valor}`;
         copiarParaClipboard(mensagem);
 
-        feedback.textContent = "Mensagem copiada. Cole na conversa com a @ofertai.promo.";
+        feedback.textContent = "Mensagem copiada! Falta só enviar no direct 👇";
         feedback.classList.add("text-emerald-400");
 
-        // Abre direto a conversa (direct) na hora do toque, sem atraso, para o navegador do Instagram não bloquear
-        const dm = document.createElement("a");
-        dm.href = "https://ig.me/m/ofertai.promo";
-        dm.target = "_blank";
-        dm.rel = "noopener noreferrer";
-        document.body.appendChild(dm);
-        dm.click();
-        dm.remove();
+        document.getElementById("msg-pronta").textContent = mensagem;
+        const passo = document.getElementById("passo-direct");
+        passo.classList.remove("hidden");
+        passo.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+
+      // Ao abrir o direct, copia de novo (garante que a mensagem está na área de transferência)
+      document.getElementById("abrir-direct").addEventListener("click", () => {
+        copiarParaClipboard(document.getElementById("msg-pronta").textContent);
       });
     });
   </script>
