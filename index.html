@@ -61,6 +61,24 @@
       </p>
     </section>
 
+    <!-- 2b. CUPONS DO 11.11 (some sozinho a partir de 12/11) -->
+    <a
+      id="cupom-1111"
+      href="https://s.shopee.com.br/20wvEBduTx"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex items-center justify-between gap-3 p-4 rounded-2xl bg-[#FFC700] text-[#0B1345] border-2 border-[#0B1345] shadow-[4px_4px_0_#0B1345] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0_#0B1345] transition"
+    >
+      <div class="flex items-center gap-3.5">
+        <div class="w-11 h-11 rounded-xl bg-[#EE3B24] flex items-center justify-center text-xl shrink-0">🎟️</div>
+        <div>
+          <h3 class="font-black text-base leading-tight">Cupons do 11.11 da Shopee</h3>
+          <p class="text-xs font-semibold text-[#0B1345]/80">Pegue os cupons antes de montar o carrinho</p>
+        </div>
+      </div>
+      <span class="text-xl font-black">→</span>
+    </a>
+
     <!-- 3. RAIO-X DE PREÇO (Direct Message Only) -->
     <section class="bg-[#0B1345] text-white rounded-3xl p-6 shadow-xl space-y-4">
       <div>
@@ -254,6 +272,8 @@
       const labelEl = document.getElementById("days-label");
       if (agora >= fim1111) {
         banner.remove();
+        const cupom = document.getElementById("cupom-1111");
+        if (cupom) cupom.remove();
       } else if (agora >= inicio1111) {
         daysEl.textContent = "HOJE";
         labelEl.textContent = "é dia de 11.11";
